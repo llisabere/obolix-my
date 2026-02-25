@@ -87,8 +87,6 @@ class Obol:
         "mail",
         "telephoneNumber",
         "memberOf",
-        # changing here
-        "mailingLists"
     ]
     group_fields = [
         "cn",
@@ -390,8 +388,6 @@ class Obol:
         groups=None,
         home=None,
         expire=None,
-        # changing here
-        mail_lists=False,
         **kwargs,
     ):
         """Add a user to the LDAP directory"""
@@ -512,10 +508,6 @@ class Obol:
         if password:
             hashed_password = self._make_secret(password).encode("utf-8")
             user_record.append(("userPassword", [hashed_password]))
-
-        # changing here
-        if mail_lists:
-            user_record.append(("mailingLists", [True]))
 
         # Add the user
         self.conn.add_s(dn, user_record)
@@ -661,8 +653,6 @@ class Obol:
         groups=None,
         home=None,
         expire=None,
-        # changing here
-        mail_lists=False,
         **kwargs,
     ):
         """Modify a user"""
@@ -721,9 +711,7 @@ class Obol:
 
         if mail:
             mod_attrs.append((ldap.MOD_REPLACE, "mail", f"{mail}".encode("utf-8")))
-        # changing here
-        if mail_lists:
-            mod_attrs.append((ldap.MOD_REPLACE, "mail_lists", True))
+
         if phone:
             mod_attrs.append(
                 (ldap.MOD_REPLACE, "telephoneNumber", f"{phone}".encode("utf-8"))
@@ -1009,8 +997,6 @@ class Obol:
                     groups=user.get("memberOf"),
                     home=user.get("homeDirectory"),
                     expire=user.get("shadowExpire"),
-                    # changing here
-                    mail_lists=user.get("mailingLists")
                 )
                 p.print_info(f"User {user['uid']} added")
             except ValueError as e:
