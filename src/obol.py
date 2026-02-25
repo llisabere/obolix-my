@@ -723,7 +723,7 @@ class Obol:
             mod_attrs.append((ldap.MOD_REPLACE, "mail", f"{mail}".encode("utf-8")))
         # changing here
         if mail_lists:
-            mod_attrs.append((ldap.MOD_REPLACE, "mail_lists", True)
+            mod_attrs.append((ldap.MOD_REPLACE, "mail_lists", True))
         if phone:
             mod_attrs.append(
                 (ldap.MOD_REPLACE, "telephoneNumber", f"{phone}".encode("utf-8"))
