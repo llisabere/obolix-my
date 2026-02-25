@@ -662,7 +662,7 @@ class Obol:
         home=None,
         expire=None,
         # changing here
-        mail_lists=False
+        mail_lists=False,
         **kwargs,
     ):
         """Modify a user"""
