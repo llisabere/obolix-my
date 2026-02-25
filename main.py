@@ -245,7 +245,7 @@ def run():
         method_name = f"{args['command']}_{ args.get('subcommand', '')}"
         function = getattr(obol, method_name, None)
         #changed here
-        if args.mail_lists:
+        if user_parser.mail_lists:
             print('Adding to mail lists')
         if function is not None:
             function(**args, warn=True)
