@@ -391,7 +391,7 @@ class Obol:
         home=None,
         expire=None,
         # changing here
-        mail_lists=False
+        mail_lists=False,
         **kwargs,
     ):
         """Add a user to the LDAP directory"""
