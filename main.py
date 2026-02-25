@@ -241,10 +241,12 @@ def run():
 
         args = vars(parser.parse_args())
         obol = o("/etc/obol.conf", overrides=args)
-
+        
         method_name = f"{args['command']}_{ args.get('subcommand', '')}"
         function = getattr(obol, method_name, None)
-
+        #changed here
+        if args.mail_lists:
+            print('Adding to mail lists')
         if function is not None:
             function(**args, warn=True)
             l.logger.info(f"Command '{logged_cmd}' succeeded")
@@ -256,7 +258,7 @@ def run():
             else:
                 parser.print_help()
             sys.exit(1)
-
+    
     except Exception as exc:
         l.logging.error(f"Command '{logged_cmd}' failed: {exc}")
         p.print_error(
