@@ -1,0 +1,19 @@
+[users]
+
+home = /home
+shell = /bin/bash
+skel = /etc/skel
+
+[ldap]
+
+host = ldaps://controller1.cluster
+bind_dn = cn=manager,dc=local
+bind_pass = <secret>
+base_dn = dc=local
+
+[custom]
+create_scratch_folders = on
+create_symlink_from_home = on
+scratch = /scratch
+user_scratch = /scratch/users
+group_scratch = /scratch/projects
