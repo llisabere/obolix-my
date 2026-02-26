@@ -764,7 +764,7 @@ class Obol:
             print("Send 2 emails to \n sympa@umontpellier.fr \n from isdm-clinique@umontpellier.fr")
             print('in the subject put the following lines:')
             print(f"ADD isdm-meso-utils@umontpellier.fr {mail} {username}")
-            print(f"ADD meso-help@umontpellier.fr {email} {username}")
+            print(f"ADD meso-help@umontpellier.fr {mail} {username}")
         if groups:
             # Ensure groups exist
             existing_groupnames = [g["cn"] for g in self.group_list()]
