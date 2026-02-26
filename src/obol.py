@@ -512,6 +512,10 @@ class Obol:
 
         if mail_lists:
             print('Need to subscribe to mailing lists!')
+            print("Send 2 emails to \n sympa@umontpellier.fr \n from isdm-clinique@umontpellier.fr")
+            print('in the subject put the following lines:')
+            print(f"ADD isdm-meso-utils@umontpellier.fr {mail} {username}")
+            print(f"ADD meso-help@umontpellier.fr {email} {username}")
 
         # Add the user
         self.conn.add_s(dn, user_record)
@@ -756,7 +760,11 @@ class Obol:
             hashed_password = self._make_secret(password).encode("utf-8")
             mod_attrs.append((ldap.MOD_REPLACE, "userPassword", hashed_password))
         if mail_lists:
-            print('Modifying mailing lists')
+            print('Need to subscribe to mailing lists!')
+            print("Send 2 emails to \n sympa@umontpellier.fr \n from isdm-clinique@umontpellier.fr")
+            print('in the subject put the following lines:')
+            print(f"ADD isdm-meso-utils@umontpellier.fr {mail} {username}")
+            print(f"ADD meso-help@umontpellier.fr {email} {username}")
         if groups:
             # Ensure groups exist
             existing_groupnames = [g["cn"] for g in self.group_list()]
