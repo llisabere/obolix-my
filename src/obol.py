@@ -388,6 +388,7 @@ class Obol:
         groups=None,
         home=None,
         expire=None,
+        mail_lists=False,
         **kwargs,
     ):
         """Add a user to the LDAP directory"""
@@ -508,6 +509,9 @@ class Obol:
         if password:
             hashed_password = self._make_secret(password).encode("utf-8")
             user_record.append(("userPassword", [hashed_password]))
+
+        if mail_lists:
+            print('Need to subscribe to mailing lists!')
 
         # Add the user
         self.conn.add_s(dn, user_record)
@@ -653,6 +657,7 @@ class Obol:
         groups=None,
         home=None,
         expire=None,
+        mail_lists=False,
         **kwargs,
     ):
         """Modify a user"""
@@ -750,6 +755,8 @@ class Obol:
         if password:
             hashed_password = self._make_secret(password).encode("utf-8")
             mod_attrs.append((ldap.MOD_REPLACE, "userPassword", hashed_password))
+        if mail_lists:
+            print('Modifying mailing lists')
         if groups:
             # Ensure groups exist
             existing_groupnames = [g["cn"] for g in self.group_list()]
