@@ -95,7 +95,7 @@ def run():
     user_addsubcommand.add_argument("--mail", metavar="EMAIL ADDRESS")
     user_addsubcommand.add_argument("--phone", metavar="PHONE NUMBER")
     # changing here
-    user_addsubcommand.add_argument("--mail_lists",action="store_true")
+    user_addsubcommand.add_argument("--mail-lists",action="store_true")
     user_addsubcommand.add_argument("--shell")
     user_addsubcommand.add_argument("--skel")
     user_addsubcommand.add_argument(
@@ -140,7 +140,7 @@ def run():
     user_modifysubcommand.add_argument("--mail", metavar="EMAIL ADDRESS")
     user_modifysubcommand.add_argument("--phone", metavar="PHONE NUMBER")
         # changing here
-    user_modifysubcommand.add_argument("--mail_lists",action="store_true")
+    user_modifysubcommand.add_argument("--mail-lists",action="store_true")
     user_modifysubcommand.add_argument(
         "--groups",
         type=lambda s: [i for i in s.split(",") if s ],
@@ -245,7 +245,7 @@ def run():
         method_name = f"{args['command']}_{ args.get('subcommand', '')}"
         function = getattr(obol, method_name, None)
         #changed here
-        if user_parser.mail_lists:
+        if args[".mail-lists:
             print('Adding to mail lists')
         if function is not None:
             function(**args, warn=True)
