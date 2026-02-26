@@ -763,8 +763,8 @@ class Obol:
             print('Need to subscribe to mailing lists!')
             print("Send 2 emails to \n sympa@umontpellier.fr \n from isdm-clinique@umontpellier.fr")
             print('in the subject put the following lines:')
-            print(f"ADD isdm-meso-utils@umontpellier.fr {existing_user["mail"]} {username}")
-            print(f"ADD meso-help@umontpellier.fr {existing_user["mail"]} {username}")
+            print(f"ADD isdm-meso-utils@umontpellier.fr {existing_user['mail']} {username}")
+            print(f"ADD meso-help@umontpellier.fr {existing_user['mail']} {username}")
         if groups:
             # Ensure groups exist
             existing_groupnames = [g["cn"] for g in self.group_list()]
