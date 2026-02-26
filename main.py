@@ -244,9 +244,6 @@ def run():
         
         method_name = f"{args['command']}_{ args.get('subcommand', '')}"
         function = getattr(obol, method_name, None)
-        #changed here
-        if args[".mail-lists:
-            print('Adding to mail lists')
         if function is not None:
             function(**args, warn=True)
             l.logger.info(f"Command '{logged_cmd}' succeeded")
