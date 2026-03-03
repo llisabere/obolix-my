@@ -168,38 +168,52 @@ def subscribe_mailing_lists(mail,user):
             msg = EmailMessage()
             msg["From"] = avatar_name 
             msg["To"] = sympa_name # args.mail
-            sujet_type = f"ADD {maillist} {args.mail} {args.user}"
+            sujet_type = f"ADD {maillist} {mail} {user}"
             msg["Subject"] = sujet_type
             msg.set_content("")
             server.send_message(msg)
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-                    prog='Create HTML Introduction to Cluter IO',
-                    formatter_class=argparse.RawDescriptionHelpFormatter,
-                    description='''
-                    Take the name of someone and their password and voila ! 
-                    Creates email.txt which you can cat email.txt or copy anyhow to your email HTML body
-                    Prints out commands for SYMPA that you put into Sujet of the email''',
-                    epilog='Great job :)')
-    parser.add_argument("--cn", metavar="Amelia Meyer",required=True)
-    parser.add_argument("--mail", metavar="amalia.meyer@uni.fr",required=True)
-    parser.add_argument("--user", metavar="meyera",required=True)
-    parser.add_argument("-s","--password", metavar="password",required=True)
-    parser.add_argument("-t","--test", action="store_true", help="test compte ou non")
-    args = parser.parse_args()
+def subscribe_mailing_lists_print(mail,user): 
+    avatar_name = "isdm-clinique@umontpellier.fr"
+    sympa_name = 'sympa@umontpellier.fr'
 
-    load_dotenv() # needs .env file with smtp configuration - I didn't manage to make it work without it
-    smtp_server = os.getenv("SMTP_SERVER")
-    smtp_port = 587
-    user_name = os.getenv("USER_NAME")
-    password = os.getenv("PASSWORD")
+    maillists = ['isdm-meso-utils@umontpellier.fr','meso-help@umontpellier.fr']
+    for maillist in maillists:
+        print('Subscribing to ',maillist)
+        msd = ''
+        msg += avatar_name + '\n'
+        msg += sympa_name + '\n' # args.mail
+        sujet_type = f"ADD {maillist} {mail} {user}"
+        msg += sujet_type
+        print(msg)
 
-    send_welcome(args.cn,args.mail,args.user,args.password)
-    print('Welcome email sent')
-    if args.test:
-        print('Test account - doing nothing')
-    else:
-        subscribe_mailing_lists(args.mail,args.user)
+# if __name__ == "__main__":
+#     parser = argparse.ArgumentParser(
+#                     prog='Create HTML Introduction to Cluter IO',
+#                     formatter_class=argparse.RawDescriptionHelpFormatter,
+#                     description='''
+#                     Take the name of someone and their password and voila ! 
+#                     Creates email.txt which you can cat email.txt or copy anyhow to your email HTML body
+#                     Prints out commands for SYMPA that you put into Sujet of the email''',
+#                     epilog='Great job :)')
+#     parser.add_argument("--cn", metavar="Amelia Meyer",required=True)
+#     parser.add_argument("--mail", metavar="amalia.meyer@uni.fr",required=True)
+#     parser.add_argument("--user", metavar="meyera",required=True)
+#     parser.add_argument("-s","--password", metavar="password",required=True)
+#     parser.add_argument("-t","--test", action="store_true", help="test compte ou non")
+#     args = parser.parse_args()
 
-    print('Done !')
+#     load_dotenv() # needs .env file with smtp configuration - I didn't manage to make it work without it
+#     smtp_server = os.getenv("SMTP_SERVER")
+#     smtp_port = 587
+#     user_name = os.getenv("USER_NAME")
+#     password = os.getenv("PASSWORD")
+
+#     send_welcome(args.cn,args.mail,args.user,args.password)
+#     print('Welcome email sent')
+#     if args.test:
+#         print('Test account - doing nothing')
+#     else:
+#         subscribe_mailing_lists(args.mail,args.user)
+
+#     print('Done !')
