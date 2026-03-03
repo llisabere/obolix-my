@@ -180,7 +180,7 @@ def subscribe_mailing_lists_print(mail,user):
     maillists = ['isdm-meso-utils@umontpellier.fr','meso-help@umontpellier.fr']
     for maillist in maillists:
         print('Subscribing to ',maillist)
-        msd = ''
+        msg = ''
         msg += avatar_name + '\n'
         msg += sympa_name + '\n' # args.mail
         sujet_type = f"ADD {maillist} {mail} {user}"
