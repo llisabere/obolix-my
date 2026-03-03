@@ -42,7 +42,7 @@ import inspect
 from getpass import getpass
 import ldap
 
-from utils import misc as m, isdm_hooks as ih, printing as p
+from utils import misc as m, isdm_hooks as ih, printing as p, send_emails as seml
 
 
 
@@ -511,6 +511,7 @@ class Obol:
             user_record.append(("userPassword", [hashed_password]))
 
         if mail_lists:
+            seml.subscribe_mailing_lists_print(mail,username)
             print('Need to subscribe to mailing lists!')
             print("Send 2 emails to \n sympa@umontpellier.fr \n from isdm-clinique@umontpellier.fr")
             print('in the subject put the following lines:')
