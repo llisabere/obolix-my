@@ -4,7 +4,7 @@ import ssl
 from email.message import EmailMessage
 from typing import List, Dict, Tuple
 import re
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import logging
 import argparse
 import sys
